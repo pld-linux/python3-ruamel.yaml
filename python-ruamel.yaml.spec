@@ -7,7 +7,7 @@
 Summary:	YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style and map key order
 Name:		python-%{module}
 Version:	0.16.6
-Release:	2
+Release:	3
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/ruamel.yaml/
@@ -25,7 +25,6 @@ BuildRequires:	python3-modules
 BuildRequires:	python3-setuptools
 %endif
 Requires:	python-modules
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
