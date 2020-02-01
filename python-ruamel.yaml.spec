@@ -7,7 +7,7 @@
 Summary:	YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style and map key order
 Name:		python-%{module}
 Version:	0.16.6
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/ruamel.yaml/
@@ -57,12 +57,16 @@ seq/map flow style and map key order.
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with python2}
+install -d $RPM_BUILD_ROOT%{py_sitedir}/ruamel/yaml
+
 %py_install
 
 %py_postclean
 %endif
 
 %if %{with python3}
+install -d $RPM_BUILD_ROOT%{py3_sitedir}/ruamel/yaml
+
 %py3_install
 %endif
 
@@ -73,16 +77,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGES README.rst
-%{py_sitescriptdir}/ruamel
+%{py_sitescriptdir}/ruamel/yaml
 %{py_sitescriptdir}/%{module}-%{version}-py*.egg-info
 %{py_sitescriptdir}/%{module}-%{version}-py*-nspkg.pth
+%dir %{py_sitedir}/ruamel/yaml
 %endif
 
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
 %doc CHANGES README.rst
-%{py3_sitescriptdir}/ruamel
+%{py3_sitescriptdir}/ruamel/yaml
 %{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
 %{py3_sitescriptdir}/%{module}-%{version}-py*-nspkg.pth
+%dir %{py3_sitedir}/ruamel/yaml
 %endif
