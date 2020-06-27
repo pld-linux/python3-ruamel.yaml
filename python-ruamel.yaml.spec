@@ -1,71 +1,77 @@
+#
 # Conditional build:
-%bcond_with	tests	# unit tests
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
 
 %define		module		ruamel.yaml
-Summary:	YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style and map key order
+Summary:	YAML 1.2 loader/dumper for Python 2
+Summary(pl.UTF-8):	Biblioteka do wczytywania/zrzucania YAML-a 1.2 dla Pythona 2
 Name:		python-%{module}
-Version:	0.16.6
-Release:	3
+Version:	0.16.10
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/ruamel.yaml/
 Source0:	https://files.pythonhosted.org/packages/source/r/ruamel.yaml/%{module}-%{version}.tar.gz
-# Source0-md5:	6a0b7fe48578cf8e4a77d788ac4fe58b
+# Source0-md5:	02774e7ed3273b3d8eee6c08326b91c4
 URL:		https://pypi.org/project/ruamel.yaml/
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
-BuildRequires:	python-modules
-BuildRequires:	python-setuptools
+BuildRequires:	python-modules >= 1:2.7
+BuildRequires:	python-setuptools >= 28.7.0
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules
-BuildRequires:	python3-setuptools
+BuildRequires:	python3-modules >= 1:3.5
+BuildRequires:	python3-setuptools >= 28.7.0
 %endif
-Requires:	python-modules
+Requires:	python-modules >= 1:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 YAML parser/emitter that supports roundtrip preservation of comments,
 seq/map flow style and map key order.
 
+%description -l pl.UTF-8
+Biblioteka do analizy/tworzenia YAML-a zachowująca komentarze i
+kolejność kluczy w mapach.
+
 %package -n python3-%{module}
-Summary:	YAML parser/emitter that supports roundtrip preservation of comments, seq/map flow style and map key order
+Summary:	YAML 1.2 loader/dumper for Python 3
+Summary(pl.UTF-8):	Biblioteka do wczytywania/zrzucania YAML-a 1.2 dla Pythona 3
 Group:		Libraries/Python
-Requires:	python3-modules
+Requires:	python3-modules >= 1:3.5
 
 %description -n python3-%{module}
 YAML parser/emitter that supports roundtrip preservation of comments,
 seq/map flow style and map key order.
+
+%description -n python3-%{module} -l pl.UTF-8
+Biblioteka do analizy/tworzenia YAML-a zachowująca komentarze i
+kolejność kluczy w mapach.
 
 %prep
 %setup -q -n %{module}-%{version}
 
 %build
 %if %{with python2}
-%py_build %{?with_tests:test}
+%py_build
 %endif
 
 %if %{with python3}
-%py3_build %{?with_tests:test}
+%py3_build
 %endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with python2}
-install -d $RPM_BUILD_ROOT%{py_sitedir}/ruamel/yaml
-
 %py_install
 
 %py_postclean
 %endif
 
 %if %{with python3}
-install -d $RPM_BUILD_ROOT%{py3_sitedir}/ruamel/yaml
-
 %py3_install
 %endif
 
@@ -75,19 +81,17 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with python2}
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README.rst
+%doc CHANGES LICENSE README.rst
 %{py_sitescriptdir}/ruamel/yaml
-%{py_sitescriptdir}/%{module}-%{version}-py*.egg-info
-%{py_sitescriptdir}/%{module}-%{version}-py*-nspkg.pth
-%dir %{py_sitedir}/ruamel/yaml
+%{py_sitescriptdir}/ruamel.yaml-%{version}-py*.egg-info
+%{py_sitescriptdir}/ruamel.yaml-%{version}-py*-nspkg.pth
 %endif
 
 %if %{with python3}
 %files -n python3-%{module}
 %defattr(644,root,root,755)
-%doc CHANGES README.rst
+%doc CHANGES LICENSE README.rst
 %{py3_sitescriptdir}/ruamel/yaml
-%{py3_sitescriptdir}/%{module}-%{version}-py*.egg-info
-%{py3_sitescriptdir}/%{module}-%{version}-py*-nspkg.pth
-%dir %{py3_sitedir}/ruamel/yaml
+%{py3_sitescriptdir}/ruamel.yaml-%{version}-py*.egg-info
+%{py3_sitescriptdir}/ruamel.yaml-%{version}-py*-nspkg.pth
 %endif
