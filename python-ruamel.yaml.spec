@@ -8,7 +8,7 @@ Summary:	YAML 1.2 loader/dumper for Python 2
 Summary(pl.UTF-8):	Biblioteka do wczytywania/zrzucania YAML-a 1.2 dla Pythona 2
 Name:		python-%{module}
 Version:	0.16.10
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/ruamel.yaml/
@@ -26,6 +26,7 @@ BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	python3-setuptools >= 28.7.0
 %endif
 Requires:	python-modules >= 1:2.7
+BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
