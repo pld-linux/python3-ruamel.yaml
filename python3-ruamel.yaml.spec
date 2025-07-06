@@ -6,7 +6,7 @@ Version:	0.18.14
 Release:	1
 License:	MIT
 Group:		Libraries/Python
-#Source0Download: https://pypi.org/simple/ruamel.yaml/
+#Source0Download: https://pypi.org/simple/ruamel-yaml/
 Source0:	https://files.pythonhosted.org/packages/source/r/ruamel.yaml/%{module}-%{version}.tar.gz
 # Source0-md5:	367c7a1c5cad44704ee06ee625e5a06e
 URL:		https://pypi.org/project/ruamel.yaml/
