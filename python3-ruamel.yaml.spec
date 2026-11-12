@@ -2,13 +2,13 @@
 Summary:	YAML 1.2 loader/dumper for Python 3
 Summary(pl.UTF-8):	Biblioteka do wczytywania/zrzucania YAML-a 1.2 dla Pythona 3
 Name:		python3-%{module}
-Version:	0.18.14
+Version:	0.19.1
 Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/ruamel-yaml/
-Source0:	https://files.pythonhosted.org/packages/source/r/ruamel.yaml/%{module}-%{version}.tar.gz
-# Source0-md5:	367c7a1c5cad44704ee06ee625e5a06e
+Source0:	https://files.pythonhosted.org/packages/source/r/ruamel.yaml/ruamel_yaml-%{version}.tar.gz
+# Source0-md5:	705372657890e1641fd7b5d07cc1f615
 URL:		https://pypi.org/project/ruamel.yaml/
 BuildRequires:	python3-modules >= 1:3.9
 BuildRequires:	python3-setuptools >= 1:28.7.0
